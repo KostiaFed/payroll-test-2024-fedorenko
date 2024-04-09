@@ -7,6 +7,14 @@ class PayrollsController < ApplicationController
   end
 
   def create
+    payroll = Payroll.generate_payroll
+
+    if payroll.errors.empty?
+      flash[:success] = "Successfully created"
+    else
+      flash[:error] = payroll.errors.first.message
+    end
+
     redirect_to action: :index
   end
 
