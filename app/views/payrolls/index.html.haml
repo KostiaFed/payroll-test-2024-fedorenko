@@ -1,0 +1,16 @@
+%h1 Payrolls
+
+- if @payrolls.any?
+  %ul
+    - @payrolls.each do |payroll|
+      %li
+        = payroll.starts_at.to_s(:short)
+        &mdash;
+        = payroll.ends_at.to_s(:short)
+        = link_to '[X]', payroll, method: :delete
+- else
+  %p no payrolls
+
+
+= form_for @new_payroll do
+  = button_tag 'Create new payroll'
